@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd78ks3l82l0v"]
+
+[ext_resource type="Script" path="res://scene.gd" id="1_fdv7d"]
+[ext_resource type="PackedScene" uid="uid://dy88dskul8cik" path="res://player.tscn" id="1_p004y"]
+[ext_resource type="PackedScene" uid="uid://cjy7jb7wunl7h" path="res://enemy.tscn" id="2_vuxk6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrm0"]
+size = Vector2(1154, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgts1"]
+size = Vector2(54, 644)
+
+[node name="Scene" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_fdv7d")
+player = NodePath("Player")
+
+[node name="Player" parent="." instance=ExtResource("1_p004y")]
+position = Vector2(579, 354)
+HEALTH = 97
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(578, 28)
+shape = SubResource("RectangleShape2D_fjrm0")
+
+[node name="StaticwBody2D2" type="StaticBody2D" parent="Borders"]
+position = Vector2(-84, 657)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticwBody2D2"]
+position = Vector2(109, -336)
+shape = SubResource("RectangleShape2D_kgts1")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders"]
+position = Vector2(-2, 590)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3"]
+position = Vector2(578, 28)
+shape = SubResource("RectangleShape2D_fjrm0")
+
+[node name="StaticwBody2D3" type="StaticBody2D" parent="Borders"]
+position = Vector2(1018, 660)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticwBody2D3"]
+position = Vector2(109, -336)
+shape = SubResource("RectangleShape2D_kgts1")
+
+[node name="Enemy_Spawn_Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("2_vuxk6")]
+position = Vector2(168, 123)
+player = NodePath("../../Player")
+
+[connection signal="timeout" from="Enemy_Spawn_Timer" to="." method="_on_enemy_spawn_timer_timeout"]
