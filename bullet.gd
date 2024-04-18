@@ -20,6 +20,5 @@ func _on_area_entered(area):
 		queue_free()
 		# Reduce health of enemy
 		area.HEALTH -= DAMAGE
-		print(area.HEALTH)
 	
 	

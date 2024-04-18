@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 # Declaring values required
 @export var HEALTH = 100
 @export var SPEED = 300.0
@@ -8,7 +7,7 @@ extends CharacterBody2D
 @export var LEVEL = 1
 @export var SCORE = 0
 
-
+@onready var enemies = get_parent().get_node("Enemies")
 # --------------------------- BULLETS --------------------------------------------
 # Bullets timer.
 #@onready var bullet_timer = $Bullet_Timer
@@ -17,17 +16,28 @@ extends CharacterBody2D
 @export var bullet_scene : PackedScene = load("res://bullet.tscn")
 
 # Get angle between Player and mouse position 
-func get_direction():
-	var mouse_pos = get_viewport().get_mouse_position()
-	var direction = (mouse_pos-position).normalized()
+func get_direction(closest_enemy):
+	var direction = (closest_enemy.position-position).normalized()
 	return direction
-	
+
+func get_closest_enemy():
+	var closest_enemy
+	var min_dist = INF
+	for enemy in enemies.get_children():
+		if min_dist>enemy.distance_from_player:
+			min_dist = enemy.distance_from_player
+			closest_enemy = enemy
+	return closest_enemy
+			
+
 # Function to shoot based on the timer 
 func shoot():
 	var bullet = bullet_scene.instantiate()
 	bullet.DAMAGE = DAMAGE
 	bullet.position = position
-	bullet.DIRECTION = get_direction()
+	
+	var closest_enemy = get_closest_enemy()
+	bullet.DIRECTION = get_direction(closest_enemy)
 	$Bullets.add_child(bullet)
 	
 

@@ -7,6 +7,8 @@ extends Area2D
 @export var DAMAGE = 10
 @export var CAN_DAMAGE : bool = true
 
+@export var distance_from_player : float
+
 
 func _ready():
 	var screensize = DisplayServer.screen_get_size()
@@ -29,11 +31,13 @@ func _ready():
 	
 func _process(delta):
 	var direction = (player.position - position).normalized()
+	distance_from_player = (player.position - position).length()
 	if direction:
 		position.x += direction[0] * SPEED * delta
 		position.y += direction[1] * SPEED * delta
 		
 		
+	
 	if HEALTH<=0:
 		queue_free()
 
@@ -50,4 +54,3 @@ func _on_collision_with_player(body):
 	if CAN_DAMAGE and body==player:
 		CAN_DAMAGE = false
 		player.HEALTH -= DAMAGE
-		print(player.HEALTH)
