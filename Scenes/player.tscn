@@ -29,4 +29,8 @@ debug_color = Color(0, 0.564706, 0.662745, 0.419608)
 wait_time = 0.5
 autostart = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
 [connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_timer_timeout"]

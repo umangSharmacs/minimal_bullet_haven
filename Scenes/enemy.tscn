@@ -10,6 +10,7 @@ specular_color = Color(0.662745, 0.0196078, 0.372549, 1)
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_nhyxn")
+SPEED = 250
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 modulate = Color(0.580392, 0, 0.12549, 1)
