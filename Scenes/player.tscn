@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy88dskul8cik"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_e3x3s"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_e3x3s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6b6mh"]
 

@@ -8,12 +8,14 @@ extends CharacterBody2D
 @export var SCORE = 0
 
 @onready var enemies = get_parent().get_node("Enemies")
+
+@export var MINIMUM_SHOOT_DISTANCE = 500
 # --------------------------- BULLETS --------------------------------------------
 # Bullets timer.
 #@onready var bullet_timer = $Bullet_Timer
 #var ATTACK_SPEED = 1/bullet_timer.wait_time
 # Load the bullets Scene
-@export var bullet_scene : PackedScene = load("res://bullet.tscn")
+@export var bullet_scene : PackedScene = load("res://Scenes/bullet.tscn")
 
 # Get angle between Player and mouse position 
 func get_direction(closest_enemy):
@@ -22,11 +24,12 @@ func get_direction(closest_enemy):
 
 func get_closest_enemy():
 	var closest_enemy
-	var min_dist = INF
+	var min_dist = MINIMUM_SHOOT_DISTANCE
 	for enemy in enemies.get_children():
-		if min_dist>enemy.distance_from_player:
-			min_dist = enemy.distance_from_player
-			closest_enemy = enemy
+		if enemy is Area2D:
+			if min_dist>enemy.distance_from_player:
+				min_dist = enemy.distance_from_player
+				closest_enemy = enemy
 	return closest_enemy
 			
 
@@ -37,14 +40,17 @@ func shoot():
 	bullet.position = position
 	
 	var closest_enemy = get_closest_enemy()
+	if closest_enemy == null:
+		return
+		
 	bullet.DIRECTION = get_direction(closest_enemy)
 	$Bullets.add_child(bullet)
 	
 
 func _on_bullet_timer_timeout():
 	shoot()
-
-
+	
+	
 # --------------------------- HEALTH CHECK --------------------------------------
 func check_health():
 	if HEALTH<0:
@@ -60,7 +66,5 @@ func _process(delta):
 	
 	check_health()
 	
-
-
-
-
+func _on_enemy_entered(area):
+	pass

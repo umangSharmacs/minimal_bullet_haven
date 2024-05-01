@@ -9,6 +9,11 @@ extends Area2D
 
 @export var distance_from_player : float
 
+signal enemy_died
+
+var coin_scene : PackedScene = load("res://Scenes/coin.tscn")
+
+var on_screen_bool : bool = false
 
 func _ready():
 	var screensize = DisplayServer.screen_get_size()
@@ -37,20 +42,17 @@ func _process(delta):
 		position.y += direction[1] * SPEED * delta
 		
 		
-	
+	# If dead, remove from qeueue and spawn a coin
 	if HEALTH<=0:
-		queue_free()
+		enemy_died.emit(self)
+
+		
 
 func _on_can_damage_timer_timeout():
 	CAN_DAMAGE = true
 	
-#func _on_body_entered(body):
-	#if CAN_DAMAGE:
-		#CAN_DAMAGE = false
-		#player.HEALTH -= DAMAGE
-		#print(player.HEALTH)
-
 func _on_collision_with_player(body):
 	if CAN_DAMAGE and body==player:
 		CAN_DAMAGE = false
 		player.HEALTH -= DAMAGE
+

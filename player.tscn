@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2spq2fwcmnl3"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_e3x3s"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_e3x3s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6b6mh"]
 
@@ -9,8 +9,8 @@ specular_color = Color(0.964706, 0.831373, 0.92549, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4ji"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_frgqf"]
-radius = 380.522
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vwue"]
+radius = 42.0476
 
 [node name="Player" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_6b6mh")
@@ -22,7 +22,7 @@ position = Vector2(-2.38419e-07, 8.34465e-07)
 scale = Vector2(20, 20)
 texture = SubResource("CanvasTexture_huglx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="player_collision_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cd4ji")
 debug_color = Color(0, 0.564706, 0.662745, 0.419608)
 
@@ -36,11 +36,10 @@ autostart = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
+[node name="coin_area_2D" type="Area2D" parent="."]
+collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_frgqf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="coin_area_2D"]
+shape = SubResource("CircleShape2D_4vwue")
 
 [connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_enemy_entered"]
