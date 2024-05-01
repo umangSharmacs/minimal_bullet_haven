@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckd5ktuhqt36v"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_nhyxn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_th8tx"]
+specular_color = Color(0.662745, 0.0196078, 0.372549, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0xiw"]
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_nhyxn")
+SPEED = 250
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+modulate = Color(0.580392, 0, 0.12549, 1)
+position = Vector2(5.96046e-07, -2.38419e-07)
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_th8tx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p0xiw")
+
+[node name="CanDamage_Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_collision_with_player"]
+[connection signal="timeout" from="CanDamage_Timer" to="." method="_on_can_damage_timer_timeout"]
