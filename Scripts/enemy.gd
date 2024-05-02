@@ -54,5 +54,5 @@ func _on_can_damage_timer_timeout():
 func _on_collision_with_player(body):
 	if CAN_DAMAGE and body==player:
 		CAN_DAMAGE = false
-		player.HEALTH -= DAMAGE
+		player._set_health(player.HEALTH - DAMAGE)
 

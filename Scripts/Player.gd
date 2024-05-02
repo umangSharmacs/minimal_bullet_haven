@@ -5,11 +5,16 @@ extends CharacterBody2D
 @export var SPEED = 300.0
 @export var DAMAGE = 10
 @export var LEVEL = 1
-@export var SCORE = 0
+@export var GOLD = 0
+
+# SIGNALS
+signal player_died 
 
 @onready var enemies = get_parent().get_node("Enemies")
 
 @export var MINIMUM_SHOOT_DISTANCE = 500
+
+@onready var healthbar = $UI_Bars/HealthBar
 # --------------------------- BULLETS --------------------------------------------
 # Bullets timer.
 #@onready var bullet_timer = $Bullet_Timer
@@ -48,14 +53,25 @@ func shoot():
 	
 
 func _on_bullet_timer_timeout():
-	shoot()
-	
+	#shoot()
+	print(HEALTH)
 	
 # --------------------------- HEALTH CHECK --------------------------------------
+
+func _set_health(new_health):
+	HEALTH = new_health
+	healthbar.health = HEALTH
+	
 func check_health():
 	if HEALTH<0:
-		get_tree().paused = true
+		player_died.emit()
 
+
+# --------------------------- GAME LOOP --------------------------------------
+
+func _ready():
+	healthbar._init_health(HEALTH)
+	
 func _process(delta):
 
 	var direction = Input.get_vector("move_left", "move_right", "move_up","move_down")
@@ -66,5 +82,3 @@ func _process(delta):
 	
 	check_health()
 	
-func _on_enemy_entered(area):
-	pass

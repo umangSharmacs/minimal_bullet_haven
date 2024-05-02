@@ -18,6 +18,7 @@ var height : int = 1000
 
 func _ready():
 	noise = noise_height_text.noise
+	player.connect("player_died",_on_player_dead)
 	#generate_world()
 	
 func generate_world():
@@ -29,5 +30,9 @@ func generate_world():
 				tilemap.set_cell(-1,Vector2i(x,y), source_id,land_atlas)
 			else:
 				tilemap.set_cell(-1,Vector2i(x,y), source_id,water_atlas)
+
+func _on_player_dead():
+	print("dead")
+	get_tree().paused = true
 	
 
