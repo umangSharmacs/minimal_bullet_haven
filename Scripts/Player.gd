@@ -9,12 +9,15 @@ extends CharacterBody2D
 
 # SIGNALS
 signal player_died 
+signal level_up
 
 @onready var enemies = get_parent().get_node("Enemies")
 
 @export var MINIMUM_SHOOT_DISTANCE = 500
 
-@onready var healthbar = $UI_Bars/HealthBar
+# UI  ELEMENTS
+@onready var healthbar = $UI/HealthBar
+@onready var coins_label = $UI/Coins_Label
 # --------------------------- BULLETS --------------------------------------------
 # Bullets timer.
 #@onready var bullet_timer = $Bullet_Timer
@@ -53,9 +56,14 @@ func shoot():
 	
 
 func _on_bullet_timer_timeout():
+	pass
 	#shoot()
-	print(HEALTH)
-	
+
+# --------------------------- GOLD CHECK --------------------------------------
+func _set_gold(new_gold):
+	GOLD = new_gold
+	coins_label.text = "COINS: "+str(GOLD)
+
 # --------------------------- HEALTH CHECK --------------------------------------
 
 func _set_health(new_health):
@@ -81,4 +89,13 @@ func _process(delta):
 		move_and_slide()
 	
 	check_health()
+	
+
+# --------------------------- LEVEL UP LOGIC ----------------------------------
+
+#func level_check():
+	# Every 100 + (level*10) coins, the player will level up again. 
+	
+	
+
 	

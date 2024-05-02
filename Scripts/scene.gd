@@ -36,3 +36,10 @@ func _on_player_dead():
 	get_tree().paused = true
 	
 
+# UI
+
+func _on_pause_button_button_down():
+	get_tree().paused =  true
+
+func _on_pause_button_button_up():
+	get_tree().paused =  false
