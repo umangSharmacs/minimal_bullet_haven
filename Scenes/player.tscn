@@ -1,32 +1,68 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy88dskul8cik"]
+[gd_scene load_steps=13 format=3 uid="uid://dy88dskul8cik"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_e3x3s"]
+[ext_resource type="Texture2D" uid="uid://bwmr4xsk6t6ov" path="res://Assets/sprites/knight.png" id="2_4o8mu"]
 [ext_resource type="PackedScene" uid="uid://m8ulht5e02n" path="res://Scenes/health_bar.tscn" id="2_tejjf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6b6mh"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_huglx"]
-specular_color = Color(0.964706, 0.831373, 0.92549, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpdcm"]
+atlas = ExtResource("2_4o8mu")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4ji"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0mm0"]
+atlas = ExtResource("2_4o8mu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp30g"]
+atlas = ExtResource("2_4o8mu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk664"]
+atlas = ExtResource("2_4o8mu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dp04d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpdcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0mm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp30g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk664")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yd3fh"]
+radius = 27.4591
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xvcip"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4vwue"]
-radius = 42.0476
+radius = 64.0078
 
 [node name="Player" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_6b6mh")
 script = ExtResource("1_e3x3s")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-modulate = Color(0.180392, 1, 1, 1)
-position = Vector2(-2.38419e-07, 8.34465e-07)
-scale = Vector2(20, 20)
-texture = SubResource("CanvasTexture_huglx")
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -16)
+scale = Vector2(3.53125, 3.65625)
+sprite_frames = SubResource("SpriteFrames_dp04d")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="player_collision_shape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_cd4ji")
+shape = SubResource("CircleShape2D_yd3fh")
 debug_color = Color(0, 0.564706, 0.662745, 0.419608)
 
 [node name="Bullets" type="Node" parent="."]

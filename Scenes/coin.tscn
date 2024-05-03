@@ -91,7 +91,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4bpv8")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 10.0
 }]
 
@@ -102,7 +102,8 @@ radius = 6.4052
 position = Vector2(7, 7.5)
 scale = Vector2(1.875, 1.9375)
 sprite_frames = SubResource("SpriteFrames_lvrj0")
-frame_progress = 0.861872
+animation = &"idle"
+autoplay = "idle"
 script = ExtResource("2_kgqy1")
 
 [node name="Area2D" type="Area2D" parent="."]

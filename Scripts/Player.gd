@@ -56,8 +56,8 @@ func shoot():
 	
 
 func _on_bullet_timer_timeout():
-	pass
-	#shoot()
+	#pass
+	shoot()
 
 # --------------------------- GOLD CHECK --------------------------------------
 func _set_gold(new_gold):

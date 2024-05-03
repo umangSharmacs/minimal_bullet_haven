@@ -4,6 +4,9 @@ extends Node2D
 
 var enemy_scene: PackedScene = load("res://Scenes/enemy.tscn")
 
+# UI 
+@onready var pause_menu_control := $UI/Control/Menu_Panel
+
 # Background 
 @export var noise_height_text : NoiseTexture2D
 @onready var tilemap : TileMap = $Background_tileMap
@@ -31,6 +34,7 @@ func generate_world():
 			else:
 				tilemap.set_cell(-1,Vector2i(x,y), source_id,water_atlas)
 
+
 func _on_player_dead():
 	print("dead")
 	get_tree().paused = true
@@ -38,8 +42,12 @@ func _on_player_dead():
 
 # UI
 
-func _on_pause_button_button_down():
+func _on_pause_button_pressed():
 	get_tree().paused =  true
+	pause_menu_control.show()
 
-func _on_pause_button_button_up():
+
+func _on_play_button_pressed():
+	print("Play")
+	pause_menu_control.hide()
 	get_tree().paused =  false

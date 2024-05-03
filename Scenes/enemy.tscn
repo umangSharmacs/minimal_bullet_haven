@@ -1,9 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjy7jb7wunl7h"]
+[gd_scene load_steps=9 format=3 uid="uid://cjy7jb7wunl7h"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_nhyxn"]
+[ext_resource type="Texture2D" uid="uid://ucbc6ndsvum7" path="res://Assets/sprites/slime_green.png" id="2_ymica"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_th8tx"]
-specular_color = Color(0.662745, 0.0196078, 0.372549, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6mei"]
+atlas = ExtResource("2_ymica")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw4n3"]
+atlas = ExtResource("2_ymica")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkcva"]
+atlas = ExtResource("2_ymica")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgub1"]
+atlas = ExtResource("2_ymica")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3g5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6mei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw4n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkcva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgub1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0xiw"]
 
@@ -12,11 +46,13 @@ collision_layer = 2
 script = ExtResource("1_nhyxn")
 SPEED = 250
 
-[node name="EnemySprite" type="Sprite2D" parent="."]
-modulate = Color(0.580392, 0, 0.12549, 1)
-position = Vector2(5.96046e-07, -2.38419e-07)
-scale = Vector2(20, 20)
-texture = SubResource("CanvasTexture_th8tx")
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.38813e-21, -1.69407e-21)
+scale = Vector2(4.693, 4.94423)
+sprite_frames = SubResource("SpriteFrames_l3g5t")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.661877
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p0xiw")

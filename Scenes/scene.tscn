@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://csp6t2cccjen3"]
+[gd_scene load_steps=15 format=3 uid="uid://csp6t2cccjen3"]
 
 [ext_resource type="Script" path="res://Scripts/scene.gd" id="1_fdv7d"]
 [ext_resource type="PackedScene" uid="uid://dy88dskul8cik" path="res://Scenes/player.tscn" id="1_p004y"]
@@ -77,6 +77,17 @@ sources/0 = SubResource("TileSetAtlasSource_xoupd")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6c08d"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qugts"]
+bg_color = Color(0.145098, 0.145098, 0.141176, 0.376471)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 50.0
+expand_margin_top = 10.0
+expand_margin_right = 50.0
+expand_margin_bottom = 50.0
+
 [node name="Scene" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_fdv7d")
 player = NodePath("Player")
@@ -122,29 +133,87 @@ offset_right = -0.119854
 offset_bottom = 0.280273
 size_flags_horizontal = 2
 size_flags_vertical = 3
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Menu_Panel" type="PanelContainer" parent="UI/Control"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.5
+offset_top = -190.5
+offset_right = 156.5
+offset_bottom = 196.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qugts")
+
+[node name="Menu_Container" type="VBoxContainer" parent="UI/Control/Menu_Panel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 65
+alignment = 1
+
+[node name="Paused_label" type="Label" parent="UI/Control/Menu_Panel/Menu_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "PAUSED "
+
+[node name="Play_button" type="Button" parent="UI/Control/Menu_Panel/Menu_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+action_mode = 0
+text = "PLAY"
+
+[node name="Go to Menu" type="Button" parent="UI/Control/Menu_Panel/Menu_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "MENU"
 
 [node name="Virtual Joystick" parent="UI/Control" instance=ExtResource("6_11k3u")]
 layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0
+anchor_right = 1.0
 offset_left = 368.0
-offset_top = -360.0
-offset_right = 668.0
+offset_top = 919.0
+offset_right = -49.0001
 offset_bottom = -60.0006
 
 [node name="Pause Button" type="Button" parent="UI/Control"]
-visible = false
 layout_mode = 1
 offset_left = 58.0
-offset_top = 55.0
+offset_top = 59.0
 offset_right = 133.0
-offset_bottom = 132.0
+offset_bottom = 136.0
 scale = Vector2(1.22831, 1.25871)
 action_mode = 0
+keep_pressed_outside = true
 text = "Pause"
 script = ExtResource("7_wk0fg")
 
 [node name="Player_Health" type="Node" parent="UI/Control"]
 
+[node name="Shop" type="Button" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -151.0
+offset_top = 97.0
+offset_right = -99.0001
+offset_bottom = 128.0
+grow_horizontal = 0
+scale = Vector2(2.41781, 2.06505)
+text = "SHOP
+"
+
 [connection signal="timeout" from="Enemies/Enemy_Spawn_Timer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]
-[connection signal="button_down" from="UI/Control/Pause Button" to="." method="_on_pause_button_button_down"]
-[connection signal="button_up" from="UI/Control/Pause Button" to="." method="_on_pause_button_button_up"]
+[connection signal="pressed" from="UI/Control/Menu_Panel/Menu_Container/Play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/Control/Pause Button" to="." method="_on_pause_button_pressed"]
