@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy88dskul8cik"]
+[gd_scene load_steps=14 format=3 uid="uid://dy88dskul8cik"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_e3x3s"]
 [ext_resource type="Texture2D" uid="uid://bwmr4xsk6t6ov" path="res://Assets/sprites/knight.png" id="2_4o8mu"]
 [ext_resource type="PackedScene" uid="uid://m8ulht5e02n" path="res://Scenes/health_bar.tscn" id="2_tejjf"]
+[ext_resource type="FontFile" uid="uid://diwkl3w5cqsxa" path="res://Assets/fonts/PixelOperator8.ttf" id="4_a7tes"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6b6mh"]
 
@@ -68,7 +69,6 @@ debug_color = Color(0, 0.564706, 0.662745, 0.419608)
 [node name="Bullets" type="Node" parent="."]
 
 [node name="Bullet_Timer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -94,11 +94,13 @@ grow_horizontal = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -158.0
+offset_left = -196.0
 offset_top = 17.0
+offset_right = -38.0
 offset_bottom = 101.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("4_a7tes")
+theme_override_font_sizes/font_size = 24
 text = "Coins
 "
 vertical_alignment = 1

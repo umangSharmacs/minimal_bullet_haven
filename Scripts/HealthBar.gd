@@ -21,13 +21,6 @@ func _set_health(new_health):
 
 func _init_health(_health):
 	
-	#tween.tween_property(self, "modulate", Color.RED, 1).set_trans(Tween.TRANS_SINE)
-	#tween.tween_property(self, "scale", Vector2(), 1).set_trans(Tween.TRANS_BOUNCE)
-	#tween.tween_callback(self.queue_free)
-	
-	#Tween.interpolate_property(self, "value", 0, 40, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	#Tween.start()
-	
 	health = _health
 	max_value = _health
 	value = _health

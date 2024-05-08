@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 # Declaring values required
-@export var HEALTH = 100
-@export var SPEED = 300.0
-@export var DAMAGE = 10
-@export var LEVEL = 1
-@export var GOLD = 0
+
+@export var HEALTH = 100 : get = _get_health , set = _set_health
+@export var SPEED = 300.0 : get = _get_speed , set = _set_speed
+@export var DAMAGE = 10 : get = _get_damage , set = _set_damage 
+@export var ATTACK_SPEED = 2 :  get = _get_attackSpeed , set = _set_attackSpeed
+@export var LEVEL = 1 : get = _get_level , set = _set_level 
+@export var GOLD = 0 : get = _get_gold , set = _set_gold 
 
 # SIGNALS
 signal player_died 
@@ -20,8 +22,7 @@ signal level_up
 @onready var coins_label = $UI/Coins_Label
 # --------------------------- BULLETS --------------------------------------------
 # Bullets timer.
-#@onready var bullet_timer = $Bullet_Timer
-#var ATTACK_SPEED = 1/bullet_timer.wait_time
+@onready var bullet_timer : Timer = $Bullet_Timer
 # Load the bullets Scene
 @export var bullet_scene : PackedScene = load("res://Scenes/bullet.tscn")
 
@@ -59,26 +60,71 @@ func _on_bullet_timer_timeout():
 	#pass
 	shoot()
 
-# --------------------------- GOLD CHECK --------------------------------------
+# --------------------------- GOLD Setter Getter --------------------------------------
+func _get_gold():
+	return GOLD 
+
 func _set_gold(new_gold):
 	GOLD = new_gold
+	# Update UI
 	coins_label.text = "COINS: "+str(GOLD)
 
-# --------------------------- HEALTH CHECK --------------------------------------
+# --------------------------- HEALTH Setter Getter --------------------------------------
+
+func _get_health():
+	return HEALTH
 
 func _set_health(new_health):
+	new_health = clamp(new_health,0, INF)
 	HEALTH = new_health
-	healthbar.health = HEALTH
+	if healthbar:
+		healthbar._set_health(HEALTH)
 	
 func check_health():
-	if HEALTH<0:
+	if HEALTH<=0:
 		player_died.emit()
 
+# --------------------------- SPEED Setter Getter --------------------------------------
+
+func _get_speed():
+	return SPEED
+	
+func _set_speed(new_speed):
+	SPEED = new_speed 
+	
+
+# --------------------------- DAMAGE Setter Getter --------------------------------------
+func _get_damage():
+	return DAMAGE
+
+func _set_damage(new_damage):
+	DAMAGE = new_damage 
+	
+# --------------------------- LEVEL Setter Getter --------------------------------------
+	
+func _get_level():
+	return LEVEL 
+
+func _set_level(new_level):
+	LEVEL = new_level 
+
+# --------------------------- ATTACK_SPEED Setter Getter --------------------------------------
+
+func _get_attackSpeed():
+	return ATTACK_SPEED
+
+func _set_attackSpeed(new_attackSpeed):
+	ATTACK_SPEED = new_attackSpeed
+	bullet_timer.wait_time = 1.0/ATTACK_SPEED 
 
 # --------------------------- GAME LOOP --------------------------------------
 
 func _ready():
-	healthbar._init_health(HEALTH)
+	
+	var wait_time = 1/ATTACK_SPEED
+	bullet_timer.wait_time = 1.0/ATTACK_SPEED 
+	healthbar._init_health(HEALTH) 
+	
 	
 func _process(delta):
 
@@ -95,7 +141,5 @@ func _process(delta):
 
 #func level_check():
 	# Every 100 + (level*10) coins, the player will level up again. 
-	
-	
 
 	
