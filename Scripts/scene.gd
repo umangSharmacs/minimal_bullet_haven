@@ -1,24 +1,23 @@
 extends Node2D
 
 @export var player : Node2D
-
 var enemy_scene: PackedScene = load("res://Scenes/enemy.tscn")
 
 # UI 
 @onready var pause_menu_control := $UI/Control/Menu_Panel
 @onready var shop_menu_control := $UI/Control/Shop_Panel
+@onready var debug = $UI/Control/Debug
 
 # Background 
-@export var noise_height_text : NoiseTexture2D
-@onready var tilemap : TileMap = $Background_tileMap
+@onready var background_parallax_layer = $Background/ParallaxBackground/ParallaxLayer
 
 var source_id = 0
 var water_atlas = Vector2i(0,1)
 var land_atlas = Vector2i(0,2)
 
-var noise : Noise
-var width : int = 1000
-var height : int = 1000
+
+var width : int = 10
+var height : int = 16
 
 func _instantiate_shop():
 	var initial_cost = 10
@@ -55,26 +54,35 @@ func _instantiate_shop():
 	return items
 
 func _ready():
-	noise = noise_height_text.noise
+	
+	#Connect Signals
 	player.connect("player_died",_on_player_dead)
+	player.connect("player_damaged", _on_player_damaged)
 	shop_menu_control.connect("shop_closed",_on_shop_closed)
 	shop_menu_control.connect("item_bought",_on_item_buy)
+	
+	# Instantiations
 	var items = _instantiate_shop()
 	shop_menu_control._instantiate_shop(items)
-	#generate_world()
-	
-func generate_world():
-	for x in range(-width/2, width/2):
-		for y in range(-height/2, height/2):
-			var noise_value = noise.get_noise_2d(x,y)
-			if noise_value>0.0:
-				tilemap.set_cell(-1,Vector2i(x,y), source_id,land_atlas)
-			else:
-				tilemap.set_cell(-1,Vector2i(x,y), source_id,water_atlas)
 
+func _process(delta):
+	#generate_world(player.position)
+	debug.text = "X: "+str(player.position.x)+"  Y: "+ str(player.position.y)
+	
+func _on_player_damaged():
+	# Flash background to red. 
+	print("damaged!")
+	background_parallax_layer.modulate = Color('red')
+	var tween = get_tree().create_tween()
+	tween.tween_property(background_parallax_layer, "modulate", Color('white'), 0.4)
+	
+	
 
 func _on_player_dead():
 	print("dead")
+	var tween = get_tree().create_tween()
+	tween.tween_property(background_parallax_layer, "modulate", Color('black'), 1)
+	await get_tree().create_timer(1).timeout
 	get_tree().paused = true
 	
 

@@ -69,7 +69,6 @@ debug_color = Color(0, 0.564706, 0.662745, 0.419608)
 [node name="Bullets" type="Node" parent="."]
 
 [node name="Bullet_Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("CanvasItemMaterial_xvcip")
@@ -94,9 +93,9 @@ grow_horizontal = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -196.0
+offset_left = -191.0
 offset_top = 17.0
-offset_right = -38.0
+offset_right = -33.0
 offset_bottom = 101.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("4_a7tes")

@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmc6yj1huy3lg"]
+[gd_scene load_steps=6 format=3 uid="uid://cmc6yj1huy3lg"]
 
 [ext_resource type="Script" path="res://Scripts/Shop.gd" id="1_msp2k"]
+[ext_resource type="FontFile" uid="uid://jvmy5p0wwwf7" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_pe34m"]
+[ext_resource type="FontFile" uid="uid://diwkl3w5cqsxa" path="res://Assets/fonts/PixelOperator8.ttf" id="3_jvwhb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct140"]
 content_margin_left = 20.0
 content_margin_top = 50.0
 content_margin_right = 20.0
 content_margin_bottom = 20.0
-bg_color = Color(1.61592e-06, 0.689811, 0.594144, 1)
+bg_color = Color(1, 1, 0, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -40,6 +42,8 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_pe34m")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cwpu7")
 text = "Coins "
 
@@ -61,6 +65,8 @@ layout_mode = 2
 
 [node name="mod_name" type="Label" parent="Shop/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_pe34m")
 text = "Modifier Name"
 horizontal_alignment = 1
 
@@ -72,15 +78,20 @@ show_percentage = false
 
 [node name="Value_Label" type="Label" parent="Shop/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_jvwhb")
 
 [node name="Cost_Label" type="Label" parent="Shop/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_jvwhb")
 text = "Cost : 100"
 horizontal_alignment = 1
 
 [node name="Buy_Button" type="Button" parent="Shop/HBoxContainer/VBoxContainer"]
 process_mode = 2
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jvwhb")
 text = "Buy"
 
 [node name="Next_button" type="Button" parent="Shop/HBoxContainer"]
@@ -92,6 +103,8 @@ layout_mode = 2
 
 [node name="Close_button" type="Button" parent="Shop"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jvwhb")
+theme_override_font_sizes/font_size = 24
 text = "Close"
 
 [connection signal="pressed" from="Shop/HBoxContainer/Prev_button" to="." method="_on_prev_button_pressed"]

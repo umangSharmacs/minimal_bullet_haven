@@ -9,9 +9,13 @@ extends CharacterBody2D
 @export var LEVEL = 1 : get = _get_level , set = _set_level 
 @export var GOLD = 0 : get = _get_gold , set = _set_gold 
 
+@onready var bg_offset_x = 0.0
+@onready var bg_offset_y = 0.0
+
 # SIGNALS
 signal player_died 
 signal level_up
+signal player_damaged
 
 @onready var enemies = get_parent().get_node("Enemies")
 
@@ -76,6 +80,10 @@ func _get_health():
 
 func _set_health(new_health):
 	new_health = clamp(new_health,0, INF)
+	
+	if new_health<HEALTH : 
+		player_damaged.emit()
+	
 	HEALTH = new_health
 	if healthbar:
 		healthbar._set_health(HEALTH)
@@ -125,21 +133,17 @@ func _ready():
 	bullet_timer.wait_time = 1.0/ATTACK_SPEED 
 	healthbar._init_health(HEALTH) 
 	
-	
 func _process(delta):
 
 	var direction = Input.get_vector("move_left", "move_right", "move_up","move_down")
 	if direction:
 		velocity.x = direction[0] * SPEED
 		velocity.y = direction[1] * SPEED
+		bg_offset_x += direction[0]
+		bg_offset_y += direction[1]
 		move_and_slide()
 	
 	check_health()
 	
-
-# --------------------------- LEVEL UP LOGIC ----------------------------------
-
-#func level_check():
-	# Every 100 + (level*10) coins, the player will level up again. 
 
 	

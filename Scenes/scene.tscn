@@ -1,9 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://csp6t2cccjen3"]
+[gd_scene load_steps=17 format=3 uid="uid://csp6t2cccjen3"]
 
 [ext_resource type="Script" path="res://Scripts/scene.gd" id="1_fdv7d"]
 [ext_resource type="PackedScene" uid="uid://dy88dskul8cik" path="res://Scenes/player.tscn" id="1_p004y"]
-[ext_resource type="Texture2D" uid="uid://1s61ihyuv5bq" path="res://Assets/sprites/Background_Pallete.png" id="2_jlje4"]
-[ext_resource type="Script" path="res://Scripts/Background_tileMap.gd" id="3_ywv64"]
 [ext_resource type="Script" path="res://Scripts/Enemies.gd" id="5_jfdnc"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="6_11k3u"]
 [ext_resource type="FontFile" uid="uid://jvmy5p0wwwf7" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="7_fsufp"]
@@ -11,77 +9,24 @@
 [ext_resource type="PackedScene" uid="uid://cmc6yj1huy3lg" path="res://Scenes/Shop.tscn" id="8_2ekhs"]
 [ext_resource type="FontFile" uid="uid://diwkl3w5cqsxa" path="res://Assets/fonts/PixelOperator8.ttf" id="8_ace6s"]
 
-[sub_resource type="Gradient" id="Gradient_frmb1"]
+[sub_resource type="Gradient" id="Gradient_vce2c"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.350649, 0.555195, 0.834416)
-colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1, 9.58426e-07, 0.649234, 0.649234, 1, 5.95766e-07, 0.340193, 0.340194, 1)
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.142857, 0.37987, 0.561688, 0.756494)
+colors = PackedColorArray(1, 0.623529, 0.952941, 0.470588, 0.996078, 0.792157, 0.341176, 0.470588, 1, 0.419608, 0.419608, 0.470588, 0.282353, 0.858824, 0.984314, 0.470588, 0.113725, 0.819608, 0.631373, 0.470588)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_e7ng0"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rlmwa"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s0okp"]
-color_ramp = SubResource("Gradient_frmb1")
-noise = SubResource("FastNoiseLite_e7ng0")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xoupd"]
-texture = ExtResource("2_jlje4")
-texture_region_size = Vector2i(6, 6)
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-1:0/0 = 0
-0:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-3:1/0 = 0
-0:3/0 = 0
-2:3/0 = 0
-1:3/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-5:3/0 = 0
-4:3/0 = 0
-3:3/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-5:5/0 = 0
-5:6/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_pbndp"]
-tile_size = Vector2i(6, 6)
-sources/0 = SubResource("TileSetAtlasSource_xoupd")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6c08d"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y3op6"]
+width = 2000
+height = 2000
+seamless = true
+seamless_blend_skirt = 0.586
+color_ramp = SubResource("Gradient_vce2c")
+noise = SubResource("FastNoiseLite_rlmwa")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qugts"]
-bg_color = Color(0.145098, 0.145098, 0.141176, 0.376471)
+bg_color = Color(1, 1, 0, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -90,27 +35,56 @@ expand_margin_left = 50.0
 expand_margin_top = 10.0
 expand_margin_right = 50.0
 expand_margin_bottom = 50.0
+shadow_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rxej"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0048p"]
+bg_color = Color(0.815686, 1, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx3tc"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7y4i"]
+bg_color = Color(0.815686, 1, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="Scene" type="Node2D" node_paths=PackedStringArray("player")]
+position = Vector2(0, -5)
 script = ExtResource("1_fdv7d")
 player = NodePath("Player")
-noise_height_text = SubResource("NoiseTexture2D_s0okp")
 
 [node name="Background" type="Node" parent="."]
+process_mode = 3
 
-[node name="Background_tileMap" type="TileMap" parent="Background"]
-visible = false
-position = Vector2(0, 3.05176e-05)
-tile_set = SubResource("TileSet_pbndp")
-rendering_quadrant_size = 64
-format = 2
-script = ExtResource("3_ywv64")
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Background"]
-visible = false
-position = Vector2(599, 381)
-scale = Vector2(3.09766, 2.54639)
-sprite_frames = SubResource("SpriteFrames_6c08d")
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+process_mode = 3
+position = Vector2(3, 0)
+motion_mirroring = Vector2(2000, 2000)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer"]
+position = Vector2(74, 630)
+texture = SubResource("NoiseTexture2D_y3op6")
 
 [node name="Player" parent="." instance=ExtResource("1_p004y")]
 position = Vector2(360, 640)
@@ -123,6 +97,10 @@ script = ExtResource("5_jfdnc")
 player = NodePath("../Player")
 Coins = NodePath("../Coins")
 
+[node name="Levelup_Timer" type="Timer" parent="Enemies"]
+wait_time = 60.0
+autostart = true
+
 [node name="Enemy_Spawn_Timer" type="Timer" parent="Enemies"]
 autostart = true
 
@@ -130,14 +108,14 @@ autostart = true
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 3
-anchor_right = 0.996
-anchor_bottom = 0.999
-offset_right = -0.119854
-offset_bottom = 0.280273
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
 mouse_filter = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Menu_Panel" type="PanelContainer" parent="UI/Control"]
 process_mode = 2
@@ -148,9 +126,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -154.5
+offset_left = -217.0
 offset_top = -193.5
-offset_right = 154.5
+offset_right = 217.0
 offset_bottom = 193.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -159,23 +137,31 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qugts")
 
 [node name="Menu_Container" type="VBoxContainer" parent="UI/Control/Menu_Panel"]
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_constants/separation = 65
 alignment = 1
 
 [node name="Paused_label" type="Label" parent="UI/Control/Menu_Panel/Menu_Container"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_ace6s")
 theme_override_font_sizes/font_size = 75
 text = "PAUSED "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Play_button" type="Button" parent="UI/Control/Menu_Panel/Menu_Container"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_ace6s")
 theme_override_font_sizes/font_size = 50
 action_mode = 0
 text = "PLAY"
 
 [node name="Go to Menu" type="Button" parent="UI/Control/Menu_Panel/Menu_Container"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_ace6s")
 theme_override_font_sizes/font_size = 50
 text = "MENU"
 
@@ -196,7 +182,11 @@ offset_top = 59.0
 offset_right = 133.0
 offset_bottom = 136.0
 scale = Vector2(1.22831, 1.25871)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_fsufp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5rxej")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0048p")
 action_mode = 0
 keep_pressed_outside = true
 text = "I I"
@@ -215,8 +205,17 @@ offset_right = -126.0
 offset_bottom = 112.0
 grow_horizontal = 0
 scale = Vector2(2.41781, 2.06505)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_ace6s")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_cx3tc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s7y4i")
 text = "SHOP
 "
 
@@ -228,6 +227,14 @@ offset_top = -270.5
 offset_right = 90.4999
 offset_bottom = 59.4999
 
+[node name="Debug" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 163.0
+offset_right = 139.0
+offset_bottom = 186.0
+
+[connection signal="timeout" from="Enemies/Levelup_Timer" to="Enemies" method="_on_levelup_timer_timeout"]
 [connection signal="timeout" from="Enemies/Enemy_Spawn_Timer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="pressed" from="UI/Control/Menu_Panel/Menu_Container/Play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="UI/Control/Pause Button" to="." method="_on_pause_button_pressed"]

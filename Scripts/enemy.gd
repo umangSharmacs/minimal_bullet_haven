@@ -2,11 +2,11 @@ extends Area2D
 
 @export var player : Node2D
 
-@export var SPEED = 100
-@export var HEALTH = 20 
-@export var DAMAGE = 10
+@export var SPEED = 100 : get = _get_speed, set = _set_speed
+@export var HEALTH = 20 : get = _get_health, set = _set_health
+@export var DAMAGE = 10 : get = _get_damage, set = _set_damage
 @export var CAN_DAMAGE : bool = true
-
+@export var VALUE : int = 10 : get = _get_value, set = _set_value
 @export var distance_from_player : float
 
 signal enemy_died
@@ -14,6 +14,38 @@ signal enemy_died
 var coin_scene : PackedScene = load("res://Scenes/coin.tscn")
 
 var on_screen_bool : bool = false
+
+# Getter Setters ----------------------------------------
+# Speed
+func _get_speed():
+	return SPEED 
+	
+func _set_speed(new_speed):
+	SPEED = new_speed
+	
+# HEALTH 
+func _get_health():
+	return HEALTH
+
+func _set_health(new_health):
+	HEALTH = new_health
+
+# DAMAGE 
+func _get_damage():
+	return DAMAGE
+
+func _set_damage(new_damage):
+	DAMAGE = new_damage 
+
+# VALUE 
+func _get_value():
+	return VALUE
+
+func _set_value(new_value):
+	VALUE = new_value
+
+
+# GAME LOOP
 
 func _ready():
 	var screensize = DisplayServer.screen_get_size()
