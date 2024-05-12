@@ -8,6 +8,9 @@ extends Area2D
 @export var CAN_DAMAGE : bool = true
 @export var VALUE : int = 10 : get = _get_value, set = _set_value
 @export var distance_from_player : float
+@export var COLOR : Color
+
+@onready var damage_numbers = $damage_numbers_component
 
 signal enemy_died
 
@@ -28,6 +31,10 @@ func _get_health():
 	return HEALTH
 
 func _set_health(new_health):
+	# If player takes damage, set damage numbers 
+	if new_health<HEALTH:
+		damage_numbers.display_number(HEALTH-new_health, damage_numbers.position, false)
+		
 	HEALTH = new_health
 
 # DAMAGE 
@@ -64,6 +71,8 @@ func _ready():
 	
 	var position_list = possible_pos[randi()%possible_pos.size()]
 	position = Vector2(position_list[0],position_list[1])
+	
+	modulate = COLOR
 
 	
 func _process(delta):

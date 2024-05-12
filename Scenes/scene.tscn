@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://csp6t2cccjen3"]
+[gd_scene load_steps=18 format=3 uid="uid://csp6t2cccjen3"]
 
 [ext_resource type="Script" path="res://Scripts/scene.gd" id="1_fdv7d"]
 [ext_resource type="PackedScene" uid="uid://dy88dskul8cik" path="res://Scenes/player.tscn" id="1_p004y"]
@@ -67,6 +67,14 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bomsw"]
+bg_color = Color(0.6, 0.286275, 1, 0.54902)
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_bottom = 50.0
+shadow_size = 100
+shadow_offset = Vector2(2.08165e-12, 25)
+
 [node name="Scene" type="Node2D" node_paths=PackedStringArray("player")]
 position = Vector2(0, -5)
 script = ExtResource("1_fdv7d")
@@ -79,7 +87,7 @@ process_mode = 3
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
 process_mode = 3
-position = Vector2(3, 0)
+position = Vector2(925, 368)
 motion_mirroring = Vector2(2000, 2000)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer"]
@@ -87,8 +95,8 @@ position = Vector2(74, 630)
 texture = SubResource("NoiseTexture2D_y3op6")
 
 [node name="Player" parent="." instance=ExtResource("1_p004y")]
+material = null
 position = Vector2(360, 640)
-HEALTH = 97
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -98,7 +106,7 @@ player = NodePath("../Player")
 Coins = NodePath("../Coins")
 
 [node name="Levelup_Timer" type="Timer" parent="Enemies"]
-wait_time = 60.0
+wait_time = 20.0
 autostart = true
 
 [node name="Enemy_Spawn_Timer" type="Timer" parent="Enemies"]
@@ -167,13 +175,14 @@ text = "MENU"
 
 [node name="Virtual Joystick" parent="UI/Control" instance=ExtResource("6_11k3u")]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.0
+anchors_preset = 3
+anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 368.0
-offset_top = 919.0
-offset_right = -49.0001
-offset_bottom = -60.0006
+offset_left = -113.0
+offset_top = -115.0
+offset_right = -113.0
+offset_bottom = -115.0
+grow_horizontal = 0
 
 [node name="Pause Button" type="Button" parent="UI/Control"]
 layout_mode = 1
@@ -222,17 +231,43 @@ text = "SHOP
 [node name="Shop_Panel" parent="UI/Control" instance=ExtResource("8_2ekhs")]
 visible = false
 layout_mode = 1
-offset_left = -271.5
-offset_top = -270.5
-offset_right = 90.4999
-offset_bottom = 59.4999
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.0
+offset_top = -183.0
+offset_right = 88.0
+offset_bottom = 87.0
 
 [node name="Debug" type="Label" parent="UI/Control"]
+visible = false
 layout_mode = 0
 offset_left = 99.0
 offset_top = 163.0
 offset_right = 139.0
 offset_bottom = 186.0
+
+[node name="Enemy_LevelUp_Panel" type="PanelContainer" parent="UI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 19.0
+offset_bottom = 375.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bomsw")
+
+[node name="Label" type="Label" parent="UI/Control/Enemy_LevelUp_Panel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_ace6s")
+theme_override_font_sizes/font_size = 24
+text = "Enemies are Levelling up... "
+horizontal_alignment = 1
 
 [connection signal="timeout" from="Enemies/Levelup_Timer" to="Enemies" method="_on_levelup_timer_timeout"]
 [connection signal="timeout" from="Enemies/Enemy_Spawn_Timer" to="Enemies" method="_on_enemy_spawn_timer_timeout"]

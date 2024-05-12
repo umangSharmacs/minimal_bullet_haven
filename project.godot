@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="minimal_bullet_haven"
-run/main_scene="res://Scenes/scene.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DamageNumbers="*res://Scripts/damage_numbers.gd"
 
 [display]
 

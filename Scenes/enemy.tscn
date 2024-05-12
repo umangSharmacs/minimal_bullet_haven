@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjy7jb7wunl7h"]
+[gd_scene load_steps=10 format=3 uid="uid://cjy7jb7wunl7h"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_nhyxn"]
 [ext_resource type="Texture2D" uid="uid://ucbc6ndsvum7" path="res://Assets/sprites/slime_green.png" id="2_ymica"]
+[ext_resource type="PackedScene" uid="uid://dme1fxg2pvpfe" path="res://Scenes/damage_numbers_component.tscn" id="3_xhsbm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6mei"]
 atlas = ExtResource("2_ymica")
@@ -60,6 +61,9 @@ shape = SubResource("RectangleShape2D_p0xiw")
 [node name="CanDamage_Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="damage_numbers_component" parent="." instance=ExtResource("3_xhsbm")]
+position = Vector2(0, -22)
 
 [connection signal="body_entered" from="." to="." method="_on_collision_with_player"]
 [connection signal="timeout" from="CanDamage_Timer" to="." method="_on_can_damage_timer_timeout"]

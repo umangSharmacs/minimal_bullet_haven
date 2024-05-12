@@ -69,6 +69,7 @@ debug_color = Color(0, 0.564706, 0.662745, 0.419608)
 [node name="Bullets" type="Node" parent="."]
 
 [node name="Bullet_Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("CanvasItemMaterial_xvcip")

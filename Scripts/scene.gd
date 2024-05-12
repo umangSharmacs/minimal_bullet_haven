@@ -10,14 +10,11 @@ var enemy_scene: PackedScene = load("res://Scenes/enemy.tscn")
 
 # Background 
 @onready var background_parallax_layer = $Background/ParallaxBackground/ParallaxLayer
+@onready var background_sprite_texture = $Background/ParallaxBackground/ParallaxLayer/Sprite2D
 
 var source_id = 0
 var water_atlas = Vector2i(0,1)
 var land_atlas = Vector2i(0,2)
-
-
-var width : int = 10
-var height : int = 16
 
 func _instantiate_shop():
 	var initial_cost = 10
@@ -54,7 +51,11 @@ func _instantiate_shop():
 	return items
 
 func _ready():
-	
+	var screensize = DisplayServer.screen_get_size()
+	background_sprite_texture.texture.width = screensize[0]*1.1
+	background_sprite_texture.texture.height = screensize[1]*1.1
+	background_parallax_layer.motion_mirroring.x = screensize[0]*1.1
+	background_parallax_layer.motion_mirroring.y = screensize[1]*1.1 
 	#Connect Signals
 	player.connect("player_died",_on_player_dead)
 	player.connect("player_damaged", _on_player_damaged)

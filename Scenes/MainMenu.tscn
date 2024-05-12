@@ -1,0 +1,211 @@
+[gd_scene load_steps=23 format=3 uid="uid://vad6tw712nfl"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_cgf5l"]
+[ext_resource type="FontFile" uid="uid://jvmy5p0wwwf7" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_7b0nf"]
+[ext_resource type="Texture2D" uid="uid://bwmr4xsk6t6ov" path="res://Assets/sprites/knight.png" id="2_q7rjj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joiq0"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duhas"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e61hy"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3quyn"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq6rf"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3xyt"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icwp2"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1kov"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrr67"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq6ft"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqpg6"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u32r"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnpro"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl5e6"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw32v"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d638o"]
+atlas = ExtResource("2_q7rjj")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adwaa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joiq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duhas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e61hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3quyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq6rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3xyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icwp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1kov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrr67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rq6ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqpg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u32r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnpro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl5e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw32v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d638o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m68ym"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d36x"]
+bg_color = Color(0.32549, 1, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cgf5l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -95.0
+offset_right = 207.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+position = Vector2(294, -238)
+scale = Vector2(9.59375, 10.125)
+sprite_frames = SubResource("SpriteFrames_adwaa")
+autoplay = "default"
+frame_progress = 0.441
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7b0nf")
+theme_override_font_sizes/font_size = 32
+text = "MINIMAL BULLET HAVEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play_Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7b0nf")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_m68ym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1d36x")
+text = "PLAY
+"
+
+[node name="SHOP" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "SHOP
+"
+
+[node name="Highscores" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "HIGHSCORE"
+
+[connection signal="pressed" from="VBoxContainer/Play_Button" to="." method="_on_play_button_pressed"]

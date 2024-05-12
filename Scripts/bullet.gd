@@ -18,6 +18,8 @@ func _on_area_entered(area):
 		# delete the bullet 
 		queue_free()
 		# Reduce health of enemy
-		area.HEALTH -= DAMAGE
+		var health = area._get_health()
+		health -= DAMAGE
+		area._set_health(health)
 	
 	
